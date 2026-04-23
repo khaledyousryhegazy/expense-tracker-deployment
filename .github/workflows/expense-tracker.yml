@@ -75,7 +75,6 @@ jobs:
           kubectl apply -f k8s/backend/
           kubectl apply -f k8s/frontend/
           kubectl apply -f k8s/networking/
-          kubectl apply -f k8s/rbac/
       - name: Deploy backend image
         run: |
           kubectl set image deployment/backend-deployment \
