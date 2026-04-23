@@ -66,6 +66,9 @@ jobs:
 
       - name: Update AWS config
         run: aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name ${{ secrets.EKS_CLUSTER_NAME }}
+      
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v3
 
       - name: Deploy backend image
         run: |
