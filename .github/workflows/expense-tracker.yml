@@ -70,6 +70,12 @@ jobs:
       - name: Install kubectl
         uses: azure/setup-kubectl@v3
 
+      - name: Apply manifests
+        run: |
+          kubectl apply -f k8s/backend/
+          kubectl apply -f k8s/frontend/
+          kubectl apply -f k8s/networking/
+          kubectl apply -f k8s/rbac/
       - name: Deploy backend image
         run: |
           kubectl set image deployment/backend-deployment \
