@@ -10,3 +10,5 @@ roleRef:
   kind: ClusterRole
   name: edit
   apiGroup: rbac.authorization.k8s.io
+
+# this is needed cause the runner couldn't apply the manifests or change images on the cluster without this role
