@@ -71,27 +71,19 @@ jobs:
         uses: azure/setup-kubectl@v3
 
       - name: Deploy backend image
-        env:
-          KUBECONFIG: ~/.kube/config
         run: |
           kubectl set image deployment/backend-deployment \
           backend-container=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/expense-backend:${{ github.sha }}
 
       - name: Deploy frontend image
-        env:
-          KUBECONFIG: ~/.kube/config
         run: |
           kubectl set image deployment/frontend-deployment \
           frontend-container=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/expense-frontend:${{ github.sha }}
 
       - name: Rollout backend
-        env:
-          KUBECONFIG: ~/.kube/config
         run: |
           kubectl rollout status deployment/backend-deployment
 
       - name: Rollout frontend
-        env:
-          KUBECONFIG: ~/.kube/config
         run: |
           kubectl rollout status deployment/frontend-deployment
