@@ -1,0 +1,29 @@
+version: "1.0"
+name: expense-tracker
+services:
+  app-backend:
+    build:
+      context: ../app/backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    networks:
+      - expense-tracker
+    environment:
+      - PORT=5000
+
+  app-ui:
+    depends_on:
+      - app-backend
+    build:
+      context: ../app/frontend
+      dockerfile: Dockerfile
+    container_name: app-ui
+    ports:
+      - "8080:80"
+    networks:
+      - expense-tracker
+
+networks:
+  expense-tracker:
+    driver: bridge
